@@ -1,7 +1,7 @@
 <template>
     <div>
         <SearchBar @termChange="onTermChange"></SearchBar>
-        <VideoList></VideoList>
+        <VideoList :videos="videos"></VideoList>
     </div>
 </template>
 
@@ -11,7 +11,7 @@
     // 1. Add component import with relative path in <script> tags
     // 2. Add component to the template of the parent
     // 3. Add component to the components object of export default
-    
+
     import axios from "axios";
     import SearchBar from "./components/SearchBar";
     import VideoList from "./components/VideoList";
@@ -24,6 +24,12 @@
             SearchBar,
             VideoList
         },
+        // If in components (not in Vue instance) define data as a function which returns the object
+        data() {
+            return {
+                videos: []
+            };
+        },
         methods: {
             onTermChange(searchTerm) {
                 axios.get("https://www.googleapis.com/youtube/v3/search", {
@@ -33,7 +39,9 @@
                         part: "snippet",
                         q: searchTerm
                     }
-                }).then(response => console.log(response));
+                }).then(response => {
+                    this.videos = response.data.items;
+                });
             }
         }
     };
