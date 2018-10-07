@@ -1,7 +1,10 @@
 <template>
     <div class="container">
         <SearchBar @termChange="onTermChange"></SearchBar>
-        <VideoList @videoSelect="onVideoSelect" :videos="videos"></VideoList>
+        <div class="row">
+            <VideoDetail :video="selectedVideo"></VideoDetail>
+            <VideoList @videoSelect="onVideoSelect" :videos="videos"></VideoList>
+        </div>
     </div>
 </template>
 
@@ -15,6 +18,7 @@
     import axios from "axios";
     import SearchBar from "./components/SearchBar";
     import VideoList from "./components/VideoList";
+    import VideoDetail from "./components/VideoDetail";
     const API_KEY = "AIzaSyA1MoOT1Ml5d3-zpGNZs2UYcehCq5skPPE";
 
     export default {
@@ -22,17 +26,19 @@
         // Let Vue know that you will have component within the template!
         components: {
             SearchBar,
-            VideoList
+            VideoList,
+            VideoDetail
         },
         // If in components (not in Vue instance) define data as a function which returns the object
         data() {
             return {
-                videos: []
+                videos: [],
+                selectedVideo: null
             };
         },
         methods: {
             onVideoSelect(video) {
-                console.log(video);
+                this.selectedVideo = video;
             },
             onTermChange(searchTerm) {
                 axios.get("https://www.googleapis.com/youtube/v3/search", {
