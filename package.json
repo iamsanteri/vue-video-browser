@@ -40,5 +40,17 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "description": "## Project setup ``` npm install ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamsanteri/vue-video-browser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamsanteri/vue-video-browser/issues"
+  },
+  "homepage": "https://github.com/iamsanteri/vue-video-browser#readme"
 }

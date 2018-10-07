@@ -16,5 +16,14 @@
     };
 </script>
 
-<style>
+<style scoped>
+/* Styles are scoped to this component as written in the style tag */
+    input {
+        width: 75%;
+    }
+
+    div {
+        text-align: center;
+        margin: 20px;
+    }
 </style>
